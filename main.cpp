@@ -13,25 +13,6 @@ int main()
   printf("maj");
   maj.inspect();
 
-  Matrix min = maj.minors();
-  printf("min");
-  min.inspect();
-
-  Matrix cof = min.cofactors();
-  printf("Cofactors");
-  cof.inspect();
-
-  Matrix transposed = cof.transpose();
-  printf("Transposed");
-  transposed.inspect();
-
-  float det = maj.determinant();
-  cout << "Determinant: " << det << endl;
-
-  Matrix inverse = transposed.multiply(1.0f/det);
-  printf("Inverse");
-  inverse.inspect();
-
   inverse = maj.inverse();
   printf("Inverse");
   inverse.inspect();
