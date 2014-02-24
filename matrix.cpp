@@ -12,18 +12,27 @@ int mymod(int n, int b)
   return n;
 }
 
+
+
+// # cols = this.cols.count
+// # rows = B.rows.count
+// row(0).col(0) = scalar: B.row(0) * this.col(0)
+// row(0).col(1) = scalar: B.row(0) * this.col(1)
+// row(1).col(0) = scalar: B.row(1) * this.col(0)
+// row(1).col(1) = scalar: B.row(1) * this.col(1)
+
 Matrix Matrix::dot_product(Matrix B)
 {
   Matrix result;
-  for(int row=0; row<matrix.size(); row++)
+  for(int row=0; row<B.matrix.size(); row++)
   {
     vector<float> result_row;
-    for(int col=0; col < B.matrix.at(0).size(); col++)
+    for(int col=0; col < matrix.at(0).size(); col++)
     {
       float sum = 0;
-      for(int i=0; i<matrix.at(row).size(); i++)
+      for(int i=0; i<B.matrix.at(row).size(); i++)
       {
-        sum += matrix.at(row).at(i) * B.matrix.at(i).at(col);
+        sum += B.matrix.at(row).at(i) * matrix.at(i).at(col);
       }
       result_row.push_back(sum);
     }
@@ -65,7 +74,7 @@ Matrix Matrix::cofactors()
     {
       bool odd_row = row % 2 == 1;
       bool odd_col = col % 2 == 1;
-      if(odd_row || odd_col && !(odd_col && odd_row))
+      if((odd_row || odd_col) && (!(odd_col && odd_row)))
         ret.matrix.at(row).at(col) *= -1.0f;
     }
   }
